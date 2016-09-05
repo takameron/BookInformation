@@ -1,4 +1,13 @@
-require "sinatra"
+require 'sinatra'
+require 'sqlite3'
+
+#データベースの準備
+before do
+	@db = SQLite3::Database.new("BookInformation.db")
+end
+after do
+	@db.close
+end
 
 #メインページ
 get '/' do
