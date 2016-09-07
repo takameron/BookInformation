@@ -1,0 +1,8 @@
+﻿CREATE TABLE todo(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  isbn INTEGER,
+  bookTitle TEXT,
+  bookAuthor TEXT,
+  bookPublisher TEXT,
+  bookIssuanceDate TEXT
+);

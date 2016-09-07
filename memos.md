@@ -16,8 +16,10 @@
 * データベース名   :   BookInformation.db
 * テーブル名 :   BookInformation
 * フィールド
-    * isbn
-    * bookTitle
-    * bookAuthor
-    * bookPublisher
-    * bookIssuanceDate
+    * id(登録順)
+    * isbn(ISBN番号)
+    * bookTitle(書名)
+    * bookAuthor(著者)
+    * bookPublisher(出版社)
+    * bookIssuanceDate(出版年月日)
+    
