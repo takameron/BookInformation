@@ -1,8 +1,10 @@
 ﻿CREATE TABLE BookInformation(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   isbn INTEGER,
-  bookTitle TEXT,
-  bookAuthor TEXT,
-  bookPublisher TEXT,
-  bookIssuanceDate TEXT
+  title TEXT,
+  author TEXT,
+  publisher TEXT,
+  publication_year INTEGE,
+  publication_month INTEGE,
+  publication_date INTEGE
 );

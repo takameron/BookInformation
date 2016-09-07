@@ -18,7 +18,10 @@
 * フィールド
     * id(登録順)
     * isbn(ISBN番号)
-    * bookTitle(書名)
-    * bookAuthor(著者)
-    * bookPublisher(出版社)
-    * bookIssuanceDate(出版年月日)
+    * title(書名)
+    * author(著者)
+    * publisher(出版社)
+    * publication_year(出版年)
+    * publication_month(出版月)
+    * publication_dates(出版日)
+        
