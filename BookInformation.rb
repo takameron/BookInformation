@@ -11,20 +11,20 @@ end
 
 #メインページ
 get '/' do
-	erb :index
+	erb :index ,layout: :layout
 end
 
 #閲覧ページ
 get '/browse/:ISBN' do
-	erb :browse
+	erb :browse ,layout: :layout
 end
 
 #登録ページ
 get '/registration' do
-	erb :registration
+	erb :registration ,layout: :layout
 end
 
 #アプリケーション紹介ページ
 get '/about' do
-	erb :about
+	erb :about ,layout: :layout
 end
