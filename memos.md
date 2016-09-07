@@ -16,5 +16,8 @@
 * データベース名   :   BookInformation.db
 * テーブル名 :   BookInformation
 * フィールド
-    * 
-    * 
+    * isbn
+    * bookTitle
+    * bookAuthor
+    * bookPublisher
+    * bookIssuanceDate
