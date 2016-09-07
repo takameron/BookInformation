@@ -13,7 +13,7 @@
 * エラー(Not Found/404)ページ
 
 ## データベース
-* データベース名   :   BookInformation.db
+* データベース名   :   BookInformation
 * テーブル名 :   BookInformation
 * フィールド
     * id(登録順)
@@ -22,4 +22,3 @@
     * bookAuthor(著者)
     * bookPublisher(出版社)
     * bookIssuanceDate(出版年月日)
-    
