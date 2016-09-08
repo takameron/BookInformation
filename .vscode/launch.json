@@ -6,7 +6,8 @@
             "type": "Ruby",
             "request": "launch",
             "cwd": "${workspaceRoot}",
-            "program": "${workspaceRoot}/BookInformation.rb"
+            "program": "${workspaceRoot}/BookInformation.rb",
+            "pathToRDebugIDE": "rdebug-ide"
         },
         {
             "name": "Listen for rdebug-ide",
