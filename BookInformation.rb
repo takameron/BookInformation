@@ -52,6 +52,8 @@ get '/registration/insert' do
 	  VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
 	SQL
 	@db.execute(sql)
+
+	redirect 'browse/@isbn'
 end
 
 #アプリケーション紹介ページ
