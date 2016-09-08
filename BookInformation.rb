@@ -18,10 +18,13 @@ end
 get '/browse/:ISBN' do
 	@ISBN = params["ISBN"].to_i
 	#閲覧数更新
-	@data = @db.execute(SELECT views from BookInformation where isbn = @ISBN);
-	@data++;
-	@db.execute(UPDATE BookInformation SET views=@data WHERE isbn = @ISBN);
-
+	@data = @db.execute(SELECT views from BookInformation where isbn = @ISBN)
+	@data++
+	sql = <<-SQL
+		UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
+	SQL
+	@db.execute(sql)
+	
 	erb :browse ,layout: :layout
 end
 
@@ -40,14 +43,15 @@ get '/registration/insert' do
 	@publication_month = params["publication_month"]
 	@publication_date = params["publication_date"]
 
-	if(@isbn==NULL||@title==NULL){
+	if (@isbn==NULL||@title==NULL)
 		redirect '/registration'
-	}
+	end
 
 	sql = <<-SQL
 	  INSERT INTO BookInformation(isbn,title,author,publisher,publication_year,publication_month,publication_date)
 	  VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
 	SQL
+	@db.execute(sql)
 end
 
 #アプリケーション紹介ページ
