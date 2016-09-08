@@ -43,7 +43,7 @@ get '/registration/insert' do
 	@publication_month = params["publication_month"]
 	@publication_date = params["publication_date"]
 
-	if (@isbn==NULL || @title==NULL)
+	if (@isbn==nil || @title==nil)
 		redirect '/registration'
 	end
 
