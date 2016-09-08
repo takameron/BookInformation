@@ -16,6 +16,12 @@ end
 
 #閲覧ページ
 get '/browse/:ISBN' do
+	@ISBN = params["ISBN"].to_i
+	#閲覧数更新
+	@data = @db.execute(SELECT views from BookInformation where isbn = @ISBN);
+	@data++;
+	@db.execute(UPDATE BookInformation SET views=@data WHERE isbn = @ISBN);
+
 	erb :browse ,layout: :layout
 end
 
