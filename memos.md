@@ -24,4 +24,5 @@
     * publication_year(出版年)
     * publication_month(出版月)
     * publication_dates(出版日)
-        
+    * views(閲覧数)
+    

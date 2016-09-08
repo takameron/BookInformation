@@ -6,5 +6,6 @@
   publisher TEXT,
   publication_year INTEGE,
   publication_month INTEGE,
-  publication_date INTEGE
+  publication_date INTEGE,
+  views INTEGE
 );
