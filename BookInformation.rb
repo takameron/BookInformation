@@ -44,7 +44,7 @@ get '/registration/insert' do
 	@publication_date = params["publication_date"].to_i
 
 	if (@isbn==nil || @title==nil)
-		redirect '/registration'
+		#redirect '/registration'
 	end
 
 	sql = <<-SQL
