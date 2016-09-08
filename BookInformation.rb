@@ -53,7 +53,7 @@ get '/registration/insert' do
 	SQL
 	@db.execute(sql)
 
-	redirect 'browse/@isbn'
+	redirect '/browse/@isbn'
 end
 
 #アプリケーション紹介ページ
