@@ -1,11 +1,11 @@
-﻿CREATE TABLE BookInformation(
+CREATE TABLE BookInformation(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  isbn INTEGER,
-  title TEXT,
+  isbn INTEGER NOT NULL,
+  title TEXT NOT NULL,
   author TEXT,
   publisher TEXT,
   publication_year INTEGE,
   publication_month INTEGE,
   publication_date INTEGE,
-  views INTEGE
+  views INTEGE DEFAULT 0
 );

@@ -1,19 +1,23 @@
-<form action="/receive" method="GET">
+<form action="/registration/insert" method="GET" name="registration">
+<p>
+最低限「ISBN番号」「書名」を入力してください。
+</P>
+<br />
 <p>
     ISBN番号:
     <input type="text" name="isbn">
 </p>
 <p>
     書名:
-    <input type="text" name="bookTitle">
+    <input type="text" name="title">
 </p>
 <p>
     著者:
-    <input type="text" name="bookAuthor">
+    <input type="text" name="author">
 </p>
 <p>
     出版社:
-    <input type="text" name="bookPublisher">
+    <input type="text" name="publisher">
 </p>
 <p>
     出版年月日（YYYY-MM-DD）:
@@ -24,6 +28,7 @@
 <br />
 <p>
     <input type="submit" value="登録">
+    <input type="reset" value="リセット">
 </p>
 <P>
     <a href="/">「本評価共有アプリ」メインページへ移動</a>
