@@ -76,7 +76,7 @@ get '/registration/insert' do
 		@db.execute(sql)
 
 		sql = <<-SQL
-			SELECT count(*) FROM BookInformation;
+			SELECT id FROM BookInformation WHERE ROWID = last_insert_rowid();
 		SQL
 		@id = @db.execute(sql);
 		redirect '/browse/@isbn/@id'
