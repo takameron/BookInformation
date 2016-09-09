@@ -15,24 +15,41 @@ get '/' do
 end
 
 #閲覧ページ
-get '/browse/:ISBN' do
+get '/browse/:ISBN/:ID' do
 	@ISBN = params["ISBN"].to_i
-	#閲覧数更新
-	sql = <<-SQL
-		SELECT views FROM BookInformation WHERE isbn = @ISBN
-	SQL
-	@data = @db.execute(sql)
+	@ID = params["ID"].to_i
 
-	#該当するISBN番号があった時のみ処理
-	if (@data)
-		@data = @data.to_i
-		@data++
+	#IDが指定されていなかった場合に、入力されたISBNが結び付けられている中で最後のIDを指定
+	if(!@ID)
 		sql = <<-SQL
-			UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
+			SELECT id FROM BookInformation WHERE isbn = @ISBN
 		SQL
-		@db.execute(sql)
+		@data = @db.execute(sql)
+		@ID = @data[@data.length-1]
 	end
 
+	#IDに結びついているISBNが入力されたISBNと等しいか確認
+	sql = <<-SQL
+		SELECT id FROM BookInformation WHERE id = @ID
+	SQL
+	@data = @db.execute(sql)
+	if(@ID!=@data)
+		redirect '/'
+	end
+
+	#閲覧数更新
+	sql = <<-SQL
+		SELECT views FROM BookInformation WHERE id = @ID
+	SQL
+	@data = @db.execute(sql)
+	@data = @data.to_i
+	@data++
+	sql = <<-SQL
+		UPDATE BookInformation SET views=@data WHERE id = @ID
+	SQL
+	@db.execute(sql)
+
+	#閲覧ページに移動
 	erb :browse ,layout: :layout
 end
 
@@ -57,7 +74,12 @@ get '/registration/insert' do
 	  		VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
 		SQL
 		@db.execute(sql)
-		redirect '/browse/@isbn'
+
+		sql = <<-SQL
+			SELECT count(*) FROM BookInformation;
+		SQL
+		@id = @db.execute(sql);
+		redirect '/browse/@isbn/@id'
 	else
 		redirect '/registration'
 	end
