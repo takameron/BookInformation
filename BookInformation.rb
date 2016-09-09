@@ -18,7 +18,10 @@ end
 get '/browse/:ISBN' do
 	@ISBN = params["ISBN"].to_i
 	#閲覧数更新
-	@data = @db.execute(SELECT views FROM BookInformation WHERE isbn = @ISBN)
+	sql = <<-SQL
+		SELECT views FROM BookInformation WHERE isbn = @ISBN
+	SQL
+	@data = @db.execute(sql)
 	@data++
 	sql = <<-SQL
 		UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
