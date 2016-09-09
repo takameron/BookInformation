@@ -75,6 +75,7 @@ get '/registration/insert' do
 		SQL
 		@db.execute(sql)
 
+		#idの取得
 		sql = <<-SQL
 			SELECT id FROM BookInformation WHERE ROWID = last_insert_rowid();
 		SQL
