@@ -25,7 +25,7 @@ get '/browse/:ISBN' do
 
 	#該当するISBN番号があった時のみ処理
 	if (@data)
-		@data.to_i
+		@data = @data.to_i
 		@data++
 		sql = <<-SQL
 			UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
