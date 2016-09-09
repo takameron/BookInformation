@@ -39,9 +39,9 @@ end
 #登録作業
 get '/registration/insert' do
 	@isbn = params["isbn"].to_i
-	@bookTitle = params["title"]
-	@bookAuthor = params["author"]
-	@bookPublisher = params["publisher"]
+	@title = params["title"]
+	@author = params["author"]
+	@publisher = params["publisher"]
 	@publication_year = params["publication_year"].to_i
 	@publication_month = params["publication_month"].to_i
 	@publication_date = params["publication_date"].to_i
