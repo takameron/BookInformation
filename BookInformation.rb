@@ -42,11 +42,12 @@ get '/browse/:ISBN/:ID' do
 		SELECT views FROM BookInformation WHERE id = "#{@ID}"
 	SQL
 	@data = @db.execute(sql)
-	@data = @data[0].to_i
-	"#{@data}"++
+	@tmp = @data.first
+	@tmp = "#{@tmp}".to_i
+	@tmp = "#{@tmp}" + 1
 
 	sql = <<-SQL
-		UPDATE BookInformation SET views = #{@data} WHERE id = #{@ID}
+		UPDATE BookInformation SET views = "#{@tmp}" WHERE id = "#{@ID}"
 	SQL
 	@db.execute(sql)
 
