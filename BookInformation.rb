@@ -22,7 +22,7 @@ get '/browse/:ISBN/:ID' do
 	#IDが指定されていなかった場合に、入力されたISBNが結び付けられている中で最後のIDを指定
 	if(!@ID)
 		sql = <<-SQL
-			SELECT id FROM BookInformation WHERE isbn = @ISBN
+			SELECT id FROM BookInformation WHERE isbn = "#{@ISBN}"
 		SQL
 		@data = @db.execute(sql)
 		@ID = @data[@data.length-1]
@@ -30,22 +30,23 @@ get '/browse/:ISBN/:ID' do
 
 	#IDに結びついているISBNが入力されたISBNと等しいか確認
 	sql = <<-SQL
-		SELECT id FROM BookInformation WHERE id = @ID
+		SELECT id FROM BookInformation WHERE id = "#{@ID}"
 	SQL
 	@data = @db.execute(sql)
-	if(@ID!=@data)
-		redirect '/'
+	if("#{@ID}"!="#{@data}")
+		#redirect '/'
 	end
 
 	#閲覧数更新
 	sql = <<-SQL
-		SELECT views FROM BookInformation WHERE id = @ID
+		SELECT views FROM BookInformation WHERE id = "#{@ID}"
 	SQL
 	@data = @db.execute(sql)
-	@data = @data.to_i
-	@data++
+	@data = @data[0].to_i
+	"#{@data}"++
+
 	sql = <<-SQL
-		UPDATE BookInformation SET views=@data WHERE id = @ID
+		UPDATE BookInformation SET views = #{@data} WHERE id = #{@ID}
 	SQL
 	@db.execute(sql)
 
