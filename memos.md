@@ -13,7 +13,7 @@
 * エラー(Not Found/404)ページ
 
 ## データベース
-* データベース名   :   BookInformation
+* データベース名   :   BookInformation.db
 * テーブル名 :   BookInformation
 * フィールド
     * id(登録順)
