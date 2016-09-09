@@ -43,17 +43,17 @@ get '/registration/insert' do
 	@publication_month = params["publication_month"].to_i
 	@publication_date = params["publication_date"].to_i
 
-	if (@isbn==nil || @title==nil)
-		#redirect '/registration'
+	if (@isbn || @title)
+		sql = <<-SQL
+	  		INSERT INTO BookInformation(isbn,title,author,publisher,publication_year,publication_month,publication_date)
+	  		VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
+		SQL
+		@db.execute(sql)
+		redirect '/browse/@isbn'
+	else
+		redirect '/registration'
 	end
 
-	sql = <<-SQL
-	  INSERT INTO BookInformation(isbn,title,author,publisher,publication_year,publication_month,publication_date)
-	  VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
-	SQL
-	@db.execute(sql)
-
-	redirect '/browse/@isbn'
 end
 
 #アプリケーション紹介ページ
