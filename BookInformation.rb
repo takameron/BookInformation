@@ -22,11 +22,16 @@ get '/browse/:ISBN' do
 		SELECT views FROM BookInformation WHERE isbn = @ISBN
 	SQL
 	@data = @db.execute(sql)
-	@data++
-	sql = <<-SQL
-		UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
-	SQL
-	@db.execute(sql)
+
+	#該当するISBN番号があった時のみ処理
+	if (@data)
+		@data.to_i
+		@data++
+		sql = <<-SQL
+			UPDATE BookInformation SET views=@data WHERE isbn = @ISBN
+		SQL
+		@db.execute(sql)
+	end
 
 	erb :browse ,layout: :layout
 end
