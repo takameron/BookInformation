@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sqlite3'
-require 'sinatra/reloader'
+require "sinatra/reloader" if development?
 
 #データベースの準備
 before do
