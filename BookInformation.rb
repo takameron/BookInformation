@@ -24,17 +24,20 @@ get '/browse/:ISBN/:ID' do
 		sql = <<-SQL
 			SELECT id FROM BookInformation WHERE isbn = "#{@ISBN}"
 		SQL
-		@data = @db.execute(sql)
-		@ID = @data[@data.length-1]
+		data = @db.execute(sql)
+		if (data.empty?)
+			redirect '/'
+		end
+		@ID = data[data.length-1]
 	end
 
 	#IDに結びついているISBNが入力されたISBNと等しいか確認
 	sql = <<-SQL
-		SELECT id FROM BookInformation WHERE id = "#{@ID}"
+		SELECT isbn FROM BookInformation WHERE id = "#{@ID}"
 	SQL
-	@data = @db.execute(sql)
-	if("#{@ID}"!="#{@data}")
-		redirect '/'
+	data = @db.execute(sql)
+	if(!data.include?(@ISBN))
+		redirect '/about'
 	end
 
 	#閲覧数更新
