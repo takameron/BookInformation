@@ -10,9 +10,46 @@
 
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+      <link href="style.css" rel="stylesheet" type="text/css"><!--ヘッダー表示のため追加-->
+      <script src="style.js" type="text/javascript"></script><!--ヘッダー表示のため追加-->
   </head>
   <body>
-    <%= yield %>
+    <!--以下はヘッダーを表示させるため-->
+    <div id="header-fixed">
+      <div id="header-bk">
+        <div id="header">・・・</div>
+      </div>
+    </div>
+    <div id="body-bk">
+      <div id="body"><%= yield %>
+    
+    <div style="height:60px;background-color:#ff7070">コンテンツ</div>
+    <div style="height:60px;background-color:#ff708e">コンテンツ</div>
+    <div style="height:60px;background-color:#ff70a9">コンテンツ</div>
+    <div style="height:60px;background-color:#ff70d2">コンテンツ</div>
+    <div style="height:60px;background-color:#ff70e9">コンテンツ</div>
+    <div style="height:60px;background-color:#d870ff">コンテンツ</div>
+    <div style="height:60px;background-color:#bd70ff">コンテンツ</div>
+    <div style="height:60px;background-color:#9f70ff">コンテンツ</div>
+    <div style="height:60px;background-color:#7370ff">コンテンツ</div>
+    <div style="height:60px;background-color:#709cff">コンテンツ</div>
+    <div style="height:60px;background-color:#70ceff">コンテンツ</div>
+    <div style="height:60px;background-color:#70ffe6">コンテンツ</div>
+    <div style="height:60px;background-color:#70ffbd">コンテンツ</div>
+    <div style="height:60px;background-color:#70ff88">コンテンツ</div>
+    <div style="height:60px;background-color:#8bff70">コンテンツ</div>
+    <div style="height:60px;background-color:#b7ff70">コンテンツ</div>
+    <div style="height:60px;background-color:#d8ff70">コンテンツ</div>
+    <div style="height:60px;background-color:#fdff70">コンテンツ</div>
+    <div style="height:60px;background-color:#ffe670">コンテンツ</div>
+    <div style="height:60px;background-color:#ffcb70">コンテンツ</div>
+    <div style="height:60px;background-color:#ffa970">コンテンツ</div>
+    <div style="height:60px;background-color:#ff7070">コンテンツ</div>
+
+      </div>   <!--bodyの中身を設定-->
+    </div>
+    <!--ここまで-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
