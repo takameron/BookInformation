@@ -1,3 +1,14 @@
+<!--
+参考URL
+http://mizukazu.minibird.jp/bootstrap-jumbotron/
+view-source:http://mizukazu.16mb.com/jumbotron/jumbotron.html
+ちょっとだけ...
+https://www.ipentec.com/document/document.aspx?page=html-javascript-fixed-header-after-scroll&culture=ja-jp
+
+参考になる可能性あり
+http://bootstrap3.cyberlab.info/javascript/scrollspy.html
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +26,65 @@
       <script src="style.js" type="text/javascript"></script><!--ヘッダー表示のため追加-->
   </head>
   <body>
+
+<div class="page-header">
+  <h1>本評価共有アプリ<small>僅かな登録書数、貧弱な機能、大きな未来</small></h1>
+</div>
+
+
+
+    <!--navbar-inverseで黒色のナビゲーションへ-->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+         
+         <!--ウィンドウ幅に合わせて可変-->
+        <div class="container-fluid">
+            
+          <div class="navbar-header">
+              
+            <!--スマホ用トグルボタンの設置-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              
+            <!--ロゴ表示の指定-->
+            <a class="navbar-brand" href="#">MK Coffee</a>
+          </div>
+            
+            <!--スマホ用の画面幅が小さいときの表示を非表示にする-->
+          <div id="navbar" class="navbar-collapse collapse">
+              
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Information</a></li>
+              <li><a href="#">Menu</a></li>
+              <li><a href="#">Map</a></li>
+                
+                <!--ドロップダウンメニューの作成-->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="divider"></li>
+                  <li class="dropdown-header">会社情報</li>
+                  <li><a href="#">企業理念</a></li>
+                  <li><a href="#">会社概要</a></li>
+                    
+                  <li class="divider"></li>
+                  <li class="dropdown-header">求人情報</li>
+                  <li><a href="#">正社員・アルバイト募集</a></li>
+                  <li><a href="#">スタッフより</a></li>
+                </ul>
+              </li>
+            </ul>
+            
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+
+
     <!--以下はヘッダーを表示させるため-->
     <div id="header-fixed">
       <div id="header-bk">
