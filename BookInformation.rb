@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sqlite3'
+require 'sinatra/reloader'
 
 #データベースの準備
 before do
