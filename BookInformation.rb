@@ -34,7 +34,7 @@ get '/browse/:ISBN/:ID' do
 	SQL
 	@data = @db.execute(sql)
 	if("#{@ID}"!="#{@data}")
-		#redirect '/'
+		redirect '/'
 	end
 
 	#閲覧数更新
