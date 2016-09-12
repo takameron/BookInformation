@@ -1,20 +1,18 @@
 <!--
-参考URL
-http://mizukazu.minibird.jp/bootstrap-jumbotron/
-view-source:http://mizukazu.16mb.com/jumbotron/jumbotron.html
-ちょっとだけ...
-https://www.ipentec.com/document/document.aspx?page=html-javascript-fixed-header-after-scroll&culture=ja-jp
-
-参考になる可能性あり
-http://bootstrap3.cyberlab.info/javascript/scrollspy.html
+参考URL（というよりコピペ）
+http://9-bb.com/bootstrap%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86%E3%81%9C-%E7%AC%AC5%E5%9B%9E-%E3%80%8C%E5%85%A8%E4%BD%93/
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="本の評価を共有し、評価の高い本・注目を浴びている本をを紹介します。あなたの次に読む本を決めるお手伝いをします。">
+    <meta name="keywords" content="本,評価,口コミ,おすすめ,情報">
+    <meta name="generator" content="Visual Studio Code">
+
     <title>本評価共有アプリ</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,105 +20,50 @@ http://bootstrap3.cyberlab.info/javascript/scrollspy.html
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
-      <link href="style.css" rel="stylesheet" type="text/css"><!--ヘッダー表示のため追加-->
-      <script src="style.js" type="text/javascript"></script><!--ヘッダー表示のため追加-->
   </head>
-  <body>
-
-<div class="page-header">
-  <h1>本評価共有アプリ<small>僅かな登録書数、貧弱な機能、大きな未来</small></h1>
-</div>
-
-
-
-    <!--navbar-inverseで黒色のナビゲーションへ-->
-     <nav class="navbar navbar-inverse navbar-fixed-top">
-         
-         <!--ウィンドウ幅に合わせて可変-->
-        <div class="container-fluid">
-            
-          <div class="navbar-header">
-              
-            <!--スマホ用トグルボタンの設置-->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-              
-            <!--ロゴ表示の指定-->
-            <a class="navbar-brand" href="#">MK Coffee</a>
-          </div>
-            
-            <!--スマホ用の画面幅が小さいときの表示を非表示にする-->
-          <div id="navbar" class="navbar-collapse collapse">
-              
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Information</a></li>
-              <li><a href="#">Menu</a></li>
-              <li><a href="#">Map</a></li>
-                
-                <!--ドロップダウンメニューの作成-->
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="divider"></li>
-                  <li class="dropdown-header">会社情報</li>
-                  <li><a href="#">企業理念</a></li>
-                  <li><a href="#">会社概要</a></li>
-                    
-                  <li class="divider"></li>
-                  <li class="dropdown-header">求人情報</li>
-                  <li><a href="#">正社員・アルバイト募集</a></li>
-                  <li><a href="#">スタッフより</a></li>
-                </ul>
-              </li>
-            </ul>
-            
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
-
-
-
-    <!--以下はヘッダーを表示させるため-->
-    <div id="header-fixed">
-      <div id="header-bk">
-        <div id="header">・・・</div>
+  <body style ="padding :60px;">
+  <header>
+    <!--ナビゲーションバーの表示-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+    
+        <!--ブランド名 ロゴ名の表示-->
+        <a class="navbar-brand" href="/">本評価共有アプリ</a>
+    
+      <!--トグルボタンの設置-->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
+          <span class="icon-bar"></span>  <!--以下3行でボタンの3つのバーを表現-->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-    </div>
-    <div id="body-bk">
-      <div id="body"><%= yield %>
+      <div id="nav-content" class="collapse navbar-collapse">
     
-    <div style="height:60px;background-color:#ff7070">コンテンツ</div>
-    <div style="height:60px;background-color:#ff708e">コンテンツ</div>
-    <div style="height:60px;background-color:#ff70a9">コンテンツ</div>
-    <div style="height:60px;background-color:#ff70d2">コンテンツ</div>
-    <div style="height:60px;background-color:#ff70e9">コンテンツ</div>
-    <div style="height:60px;background-color:#d870ff">コンテンツ</div>
-    <div style="height:60px;background-color:#bd70ff">コンテンツ</div>
-    <div style="height:60px;background-color:#9f70ff">コンテンツ</div>
-    <div style="height:60px;background-color:#7370ff">コンテンツ</div>
-    <div style="height:60px;background-color:#709cff">コンテンツ</div>
-    <div style="height:60px;background-color:#70ceff">コンテンツ</div>
-    <div style="height:60px;background-color:#70ffe6">コンテンツ</div>
-    <div style="height:60px;background-color:#70ffbd">コンテンツ</div>
-    <div style="height:60px;background-color:#70ff88">コンテンツ</div>
-    <div style="height:60px;background-color:#8bff70">コンテンツ</div>
-    <div style="height:60px;background-color:#b7ff70">コンテンツ</div>
-    <div style="height:60px;background-color:#d8ff70">コンテンツ</div>
-    <div style="height:60px;background-color:#fdff70">コンテンツ</div>
-    <div style="height:60px;background-color:#ffe670">コンテンツ</div>
-    <div style="height:60px;background-color:#ffcb70">コンテンツ</div>
-    <div style="height:60px;background-color:#ffa970">コンテンツ</div>
-    <div style="height:60px;background-color:#ff7070">コンテンツ</div>
+        <!--リンクのリスト メニューリスト-->
+        <ul class="nav navbar-nav">
+          <li><a href="/">Main</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/registration">新規図書登録</a></li>
+        </ul>
+      
+        <!--検索フォーム-->
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="登録済み図書の中から探す">
+          </div>
+          <button type="submit" class="btn btn-default">検索</button>
+        </form>
+      </div>
+    </nav>
 
-      </div>   <!--bodyの中身を設定-->
+    <!--ヘッダーの表示-->
+    <div class="page-header">
+      <h1>本評価共有アプリ  <small>〜僅かな登録書数、貧弱な機能、大きな未来〜</small></h1>
     </div>
-    <!--ここまで-->
-    
+  </header>
+
+    <%= yield %>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
