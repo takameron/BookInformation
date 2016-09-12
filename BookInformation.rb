@@ -36,8 +36,8 @@ get '/browse/:ISBN/:ID' do
 	sql = <<-SQL
 		SELECT isbn FROM BookInformation WHERE id = "#{@ID}"
 	SQL
-	data = @db.execute(sql)
-	if(!data.include?(@ISBN))
+	data = @db.get_first_value(sql)
+	if(data!=@ISBN)
 		redirect '/about'
 	end
 
@@ -49,7 +49,7 @@ get '/browse/:ISBN/:ID' do
 	data = data + 1
 
 	sql = <<-SQL
-		UPDATE BookInformation SET views = "#{tmp}" WHERE id = "#{@ID}"
+		UPDATE BookInformation SET views = "#{data}" WHERE id = "#{@ID}"
 	SQL
 	@db.execute(sql)
 
