@@ -53,6 +53,22 @@ get '/browse/:ISBN/:ID' do
 	SQL
 	@db.execute(sql)
 
+	#閲覧する対象のデータを取得
+	sql = <<-SQL
+		SELECT * FROM BookInformation WHERE id = "#{@ID}"
+	SQL
+	#id,isbnは取得済み
+	#それぞれのデータは@deta配列の[0]の中の配列として入っている
+	#配列の添字は0から始まる
+	@data = @db.execute(sql)
+	@title = @data[0][2]
+	@author = @data[0][3]
+	@publisher = @data[0][4]
+	@publication_year = @data[0][5]
+	@publication_month = @data[0][6]
+	@publication_dates = @data[0][7]
+	@views = @data[0][8]
+
 	#閲覧ページに移動
 	erb :browse ,layout: :layout
 end

@@ -1,4 +1,38 @@
 <h1>閲覧</h1>
-    <P>
+
+<form action="/registration/insert" method="GET" name="registration">
+<br />
+<p>
+    ISBN番号（ISBN番号13桁を半角数字のみ,区切り文字なし）:
+    <input type="text" name="isbn" value="<%= @ISBN %>">
+</p>
+<p>
+    書名:
+    <input type="text" name="title" value="<%= @title %>">
+</p>
+<p>
+    著者:
+    <input type="text" name="author" value="<%= @author %>">
+</p>
+<p>
+    出版社:
+    <input type="text" name="publisher" value="<%= @publisher %>">
+</p>
+<p>
+    出版年月日（YYYY-MM-DD 例：2000-01-01）(半角数字のみ):
+    <input type="text" name="publication_year" value="<%= @publication_year %>">年
+    <input type="text" name="publication_month" value="<%= @publication_month %>">月
+    <input type="text" name="publication_dates" value="<%= @publication_dates %>">日
+</p>
+<p>
+    閲覧数:
+    <input type="text" name="views" value="<%= @views %>">
+</p>
+<br />
+<p>
+    <INPUT type="button" value="戻る" onClick="history.back()">
+</p>
+<P>
     <a href="/">「本評価共有アプリ」メインページへ移動</a>
-    </P>
+</P>
+</form>
