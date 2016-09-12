@@ -45,9 +45,8 @@ get '/browse/:ISBN/:ID' do
 	sql = <<-SQL
 		SELECT views FROM BookInformation WHERE id = "#{@ID}"
 	SQL
-	data = @db.execute(sql)
-	tmp = data.first
-	tmp = tmp + 1
+	data = @db.get_first_value(sql)
+	data = data + 1
 
 	sql = <<-SQL
 		UPDATE BookInformation SET views = "#{tmp}" WHERE id = "#{@ID}"
