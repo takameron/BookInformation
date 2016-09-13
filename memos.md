@@ -31,3 +31,5 @@
         * dataid(BookDataの対応するid)
         * stars(5段階評価(1~5))
         * Reputation(評判)
+
+* 閲覧ページから評価の投稿
