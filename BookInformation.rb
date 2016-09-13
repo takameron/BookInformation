@@ -127,6 +127,13 @@ get '/registration/insert' do
 	end
 end
 
+#検索結果ページ
+get '/?' do
+	@search = params[search]
+
+	erb :search, layout: :layout
+end
+
 #アプリケーション紹介ページ
 get '/about' do
 	erb :about ,layout: :layout
