@@ -1,4 +1,4 @@
-CREATE TABLE BookInformation(
+CREATE TABLE BookData(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   isbn INTEGER NOT NULL,
   title TEXT NOT NULL,
@@ -8,4 +8,11 @@ CREATE TABLE BookInformation(
   publication_month INTEGE,
   publication_date INTEGE,
   views INTEGE DEFAULT 0
+);
+
+CREATE TABLE BookReputation(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dataid INTEGER NOT NULL,
+  stars INTEGER NOT NULL,
+  reputation TEXT
 );

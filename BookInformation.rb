@@ -88,7 +88,7 @@ get '/registration/insert' do
 	@publication_month = params["publication_month"].to_i
 	@publication_date = params["publication_date"].to_i
 
-	if (@isbn || @title)
+	if (@isbn && @title)
 		sql = <<-SQL
 	  		INSERT INTO BookData(isbn,title,author,publisher,publication_year,publication_month,publication_date)
 	  		VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
@@ -99,12 +99,11 @@ get '/registration/insert' do
 		sql = <<-SQL
 			SELECT id FROM BookData WHERE ROWID = last_insert_rowid();
 		SQL
-		@id = @db.execute(sql);
-		redirect '/browse/@isbn/@id'
+		@id = @db.get_first_value(sql);
+		redirect "/browse/#{@isbn}/#{@id}"
 	else
 		redirect '/registration'
 	end
-
 end
 
 #アプリケーション紹介ページ
