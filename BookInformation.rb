@@ -131,3 +131,8 @@ end
 get '/about' do
 	erb :about ,layout: :layout
 end
+
+#404(ページが見つからない)対策
+not_found do
+	erb :not_found, layout: :layout
+end
