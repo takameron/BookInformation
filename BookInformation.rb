@@ -69,6 +69,12 @@ get '/browse/:ISBN/:ID' do
 	@publication_dates = @data[0][7]
 	@views = @data[0][8]
 
+	#評価を取得
+	sql = <<-SQL
+		SELECT * FROM BookReputation WHERE dataid = "#{@ID}"
+	SQL
+	@reputation = @db.execute(sql)
+
 	#閲覧ページに移動
 	erb :browse ,layout: :layout
 end
