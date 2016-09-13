@@ -73,6 +73,21 @@ get '/browse/:ISBN/:ID' do
 	erb :browse ,layout: :layout
 end
 
+#評価登録作業
+get '/reputation/insert' do
+	@dataid = params["id"]
+	@stars = params["stars"]
+	@reputation = params["reputation"]
+
+	sql = <<-SQL
+		INSERT INTO BookReputation(dataid,stars,reputation)
+		VALUES ("#{@dataid}","#{@stars}","#{@reputation}")
+	SQL
+	@db.execute(sql)
+
+	redirect back
+end
+
 #登録ページ
 get '/registration' do
 	erb :registration ,layout: :layout

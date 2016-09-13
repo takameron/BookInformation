@@ -1,6 +1,6 @@
 <h1>閲覧</h1>
 
-<form action="/registration/insert" method="GET" name="registration">
+<form action="/reputation/insert" method="GET" name="reputation">
 <br />
 <p>
     ISBN番号（ISBN番号13桁を半角数字のみ,区切り文字なし）:
@@ -28,11 +28,33 @@
     閲覧数:
     <input type="text" name="views" value="<%= @views %>">
 </p>
+<p>
+	内部登録番号:
+	<input type="text" name="id" value="<%= @ID %>">
+</p>
 <br />
 <p>
-    <INPUT type="button" value="戻る" onClick=<%= redirect back %>>
+    <INPUT type="button" value="戻る" onClick='history.back();'>
 </p>
 <P>
     <a href="/">「本評価共有アプリ」メインページへ移動</a>
 </P>
+
+<!--評価の書き込み-->
+<p>
+	<div>
+  <textarea name="reputation" cols=40 rows=4>ここにこの本の評価を入力してください</textarea>
+	5段階評価：<select name="stars">
+	<option value=0>選択してください</option>
+	<option value=1>最悪</option>
+	<option value=2>微妙</option>
+	<option value=3>普通</option>
+	<option value=4>そこそこ</option>
+	<option value=5>最高に良い</option>
+	</select>
+	</div>
+<input type="submit" value="送信"><input type="reset" value="リセット">
+</p>
+
+
 </form>
