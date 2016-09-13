@@ -23,7 +23,7 @@ get '/browse/:ISBN/:ID' do
 	#IDが指定されていなかった場合に、入力されたISBNが結び付けられている中で最後のIDを指定
 	if(!@ID)
 		sql = <<-SQL
-			SELECT id FROM BookInformation WHERE isbn = "#{@ISBN}"
+			SELECT id FROM BookData WHERE isbn = "#{@ISBN}"
 		SQL
 		data = @db.execute(sql)
 		if (data.empty?)
@@ -34,7 +34,7 @@ get '/browse/:ISBN/:ID' do
 
 	#IDに結びついているISBNが入力されたISBNと等しいか確認
 	sql = <<-SQL
-		SELECT isbn FROM BookInformation WHERE id = "#{@ID}"
+		SELECT isbn FROM BookData WHERE id = "#{@ID}"
 	SQL
 	data = @db.get_first_value(sql)
 	if(data!=@ISBN)
@@ -43,19 +43,19 @@ get '/browse/:ISBN/:ID' do
 
 	#閲覧数更新
 	sql = <<-SQL
-		SELECT views FROM BookInformation WHERE id = "#{@ID}"
+		SELECT views FROM BookData WHERE id = "#{@ID}"
 	SQL
 	data = @db.get_first_value(sql)
 	data = data + 1
 
 	sql = <<-SQL
-		UPDATE BookInformation SET views = "#{data}" WHERE id = "#{@ID}"
+		UPDATE BookData SET views = "#{data}" WHERE id = "#{@ID}"
 	SQL
 	@db.execute(sql)
 
 	#閲覧する対象のデータを取得
 	sql = <<-SQL
-		SELECT * FROM BookInformation WHERE id = "#{@ID}"
+		SELECT * FROM BookData WHERE id = "#{@ID}"
 	SQL
 	#id,isbnは取得済み
 	#それぞれのデータは@deta配列の[0]の中の配列として入っている
@@ -90,14 +90,14 @@ get '/registration/insert' do
 
 	if (@isbn || @title)
 		sql = <<-SQL
-	  		INSERT INTO BookInformation(isbn,title,author,publisher,publication_year,publication_month,publication_date)
+	  		INSERT INTO BookData(isbn,title,author,publisher,publication_year,publication_month,publication_date)
 	  		VALUES("#{@isbn}","#{@title}","#{@author}","#{@publisher}","#{@publication_year}","#{@publication_month}","#{@publication_date}");
 		SQL
 		@db.execute(sql)
 
 		#idの取得
 		sql = <<-SQL
-			SELECT id FROM BookInformation WHERE ROWID = last_insert_rowid();
+			SELECT id FROM BookData WHERE ROWID = last_insert_rowid();
 		SQL
 		@id = @db.execute(sql);
 		redirect '/browse/@isbn/@id'

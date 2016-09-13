@@ -14,7 +14,7 @@
 
 ## データベース
 * データベース名   :   BookInformation.db
-* テーブル名 :   BookInformation
+* テーブル名 :   BookData
 * フィールド
     * id(登録順)
     * isbn(ISBN番号)
