@@ -1,3 +1,5 @@
+Encoding.default_external = 'UTF-8'
+
 require 'sinatra'
 require 'sqlite3'
 require "sinatra/reloader" if development?
@@ -128,8 +130,35 @@ get '/registration/insert' do
 end
 
 #検索結果ページ
-get '/?' do
-	@search = params[search]
+get '/search' do
+	#本情報の中から調べる
+	#文字として調べる
+	@search = params["search"]
+	sql = <<-SQL
+		SELECT * FROM BookData WHERE title="#{@search}" OR author="#{@search}" OR publisher="#{@search}"
+	SQL
+	@data1=@db.execute(sql);
+	#本評価の中から調べる
+	#評価をパターンマッチング
+	sql = <<-SQL
+		SELECT * FROM BookReputation WHERE reputation glob "#{@search}";
+	SQL
+	@data2=@db.execute(sql)
+	#評価しかない（他にもあるが）ので書名も追加
+	@data2.each do |row|
+		sql = <<-SQL
+			SELECT title FROM BookData WHERE id = row[1]
+		SQL
+		title = @db.get_first_value(sql)
+		@data2[row].push(title)
+	end
+
+	#数字として調べる
+	@search = @search.to_i
+	sql = <<-SQL
+		SELECT * FROM BookData WHERE isbn="#{@search}" OR publication_year="#{@search}" OR publication_month="#{@search}" OR publication_date="#{@search}"
+	SQL
+	@data3=@db.execute(sql)
 
 	erb :search, layout: :layout
 end
