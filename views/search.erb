@@ -7,9 +7,14 @@
 <a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a>
 
 <table class="table table-striped">
+<thead>
+	<tr>
+		<th>書名</th>
+	</tr>
+</thead>
 <% @data1.each do |row| %>
 	  	<tr>
-    		<td><%= row[2] %></td>
+    		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
             <% row.each do |i| %>
     		    <td><%= row[i.to_i] %></td>
             <% end %>
@@ -23,13 +28,16 @@
             <% end %>
     </tr>
 <% end %>
-<% @data3.each do |row|%>
-	  	<tr>
-    		<td><%= row[2] %></td>
-            <% row.each do |i| %>
-    		    <td><%= row[i.to_i] %></td>
-            <% end %>
-  		</tr>
+<!--検索文字列が数値の時のみ検索-->
+<% if defined? @data3 %>
+	<% @data3.each do |row|%>
+	  		<tr>
+    			<td><%= row[2] %></td>
+            	<% row.each do |i| %>
+    		    	<td><%= row[i.to_i] %></td>
+            	<% end %>
+  			</tr>
+	<% end %>
 <% end %>
 	</tbody>
 </table>

@@ -131,34 +131,44 @@ end
 
 #検索結果ページ
 get '/search' do
+	# 文字・数値の判別
+	def integer_string?(str)
+  		Integer(str)
+  		true
+	rescue ArgumentError
+  		false
+	end
+
 	#本情報の中から調べる
 	#文字として調べる
 	@search_text = params["search"]
 	sql = <<-SQL
-		SELECT * FROM BookData WHERE title="#{@search_text}" OR author="#{@search_text}" OR publisher="#{@search_text}"
+		SELECT * FROM BookData WHERE title LIKE "%#{@search_text}%" OR author LIKE "%#{@search_text}%" OR publisher LIKE "%#{@search_text}%"
 	SQL
 	@data1=@db.execute(sql);
 	#本評価の中から調べる
 	#評価をパターンマッチング
 	sql = <<-SQL
-		SELECT * FROM BookReputation WHERE reputation glob "#{@search_text}";
+		SELECT * FROM BookReputation WHERE reputation LIKE "%#{@search_text}%"
 	SQL
 	@data2=@db.execute(sql)
 	#評価しかない（他にもあるが）ので書名も追加
 	@data2.each do |row|
 		sql = <<-SQL
-			SELECT title FROM BookData WHERE id = row[1]
+			SELECT title FROM BookData WHERE id = "#{row[1]}"
 		SQL
 		title = @db.get_first_value(sql)
 		@data2[row].push(title)
 	end
 
 	#数字として調べる
-	@search_number = @search.to_i
-	sql = <<-SQL
-		SELECT * FROM BookData WHERE isbn="#{@search_number}" OR publication_year="#{@search_number}" OR publication_month="#{@search_number}" OR publication_date="#{@search_number}"
-	SQL
-	@data3=@db.execute(sql)
+	if integer_string?(@search_text)
+		@search_number = @search.to_i
+		sql = <<-SQL
+			SELECT * FROM BookData WHERE isbn="#{@search_number}" OR publication_year="#{@search_number}" OR publication_month="#{@search_number}" OR publication_date="#{@search_number}"
+		SQL
+		@data3=@db.execute(sql)
+	end
 
 	erb :search, layout: :layout
 end
