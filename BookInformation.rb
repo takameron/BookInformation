@@ -133,15 +133,15 @@ end
 get '/search' do
 	#本情報の中から調べる
 	#文字として調べる
-	@search = params["search"]
+	@search_text = params["search"]
 	sql = <<-SQL
-		SELECT * FROM BookData WHERE title="#{@search}" OR author="#{@search}" OR publisher="#{@search}"
+		SELECT * FROM BookData WHERE title="#{@search_text}" OR author="#{@search_text}" OR publisher="#{@search_text}"
 	SQL
 	@data1=@db.execute(sql);
 	#本評価の中から調べる
 	#評価をパターンマッチング
 	sql = <<-SQL
-		SELECT * FROM BookReputation WHERE reputation glob "#{@search}";
+		SELECT * FROM BookReputation WHERE reputation glob "#{@search_text}";
 	SQL
 	@data2=@db.execute(sql)
 	#評価しかない（他にもあるが）ので書名も追加
@@ -154,9 +154,9 @@ get '/search' do
 	end
 
 	#数字として調べる
-	@search = @search.to_i
+	@search_number = @search.to_i
 	sql = <<-SQL
-		SELECT * FROM BookData WHERE isbn="#{@search}" OR publication_year="#{@search}" OR publication_month="#{@search}" OR publication_date="#{@search}"
+		SELECT * FROM BookData WHERE isbn="#{@search_number}" OR publication_year="#{@search_number}" OR publication_month="#{@search_number}" OR publication_date="#{@search_number}"
 	SQL
 	@data3=@db.execute(sql)
 

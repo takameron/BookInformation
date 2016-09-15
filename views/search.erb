@@ -1,13 +1,17 @@
 <h1>検索結果</h1>
-満足のいく検索結果がなければ、Googleで検索してください。<br />
+満足のいく検索結果がなければ、Googleで検索してください。
+<a href="https://www.google.co.jp/#q=<%= @search_text %>" target="_blank">Googleで "<%= @search_text %>" を検索</a><br />
 （もちろんYahoo!でも可）
+<a href="http://search.yahoo.co.jp/search?p=<%= @search_text %>" target="_blank">Yahoo!で "<%= @search_text %>" を検索</a><br />
+（それともBingという手もあり？）
+<a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a>
 
 <table class="table table-striped">
 <% @data1.each do |row| %>
 	  	<tr>
     		<td><%= row[2] %></td>
             <% row.each do |i| %>
-    		    <td><%= row[i] %></td>
+    		    <td><%= row[i.to_i] %></td>
             <% end %>
   		</tr>
 <% end %>
@@ -15,7 +19,7 @@
     <tr>
         <td><%= row[4] %></td>
             <% row.each do |i| %>
-    		    <td><%= row[i] %></td>
+    		    <td><%= row[i.to_i] %></td>
             <% end %>
     </tr>
 <% end %>
@@ -23,7 +27,7 @@
 	  	<tr>
     		<td><%= row[2] %></td>
             <% row.each do |i| %>
-    		    <td><%= row[i] %></td>
+    		    <td><%= row[i.to_i] %></td>
             <% end %>
   		</tr>
 <% end %>
