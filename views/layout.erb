@@ -58,6 +58,14 @@ http://9-bb.com/bootstrap%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6web%E3%82%B5%E3%82%
           <button type="submit" class="btn btn-default">検索</button>
         </form>
         <p class="navbar-text navbar-right">図書検索</p>
+        
+        <%# 登録図書数 %>
+        <%
+        allbooks = @db.execute("SELECT COUNT(*) FROM BookData")
+        %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/search?search=">登録図書数 : <%= allbooks %> 冊</a></li>
+        </ul>
       </div>
     </nav>
 
