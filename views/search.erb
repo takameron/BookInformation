@@ -7,11 +7,24 @@
 <a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a>
 
 <table class="table table-striped">
+<!--data1用-->
+<% if !@data1.empty? %>
 <thead>
 	<tr>
 		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>ISBN</th>
+		<th>書名</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>出版年</th>
+		<th>出版月</th>
+		<th>出版日</th>
+		<th>閲覧数</th>
 	</tr>
 </thead>
+<% end %>
+<tbody>
 <% @data1.each do |row| %>
 	  	<tr>
     		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
@@ -20,24 +33,59 @@
             <% end %>
   		</tr>
 <% end %>
+</tbody>
+<!--data2用-->
+<% if !@data2.empty? %>
+<thead>
+	<tr>
+		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>本の内部登録番号</th>
+		<th>5段階評価</th>
+		<th>評判</th>
+	</tr>
+</thead>
+<tbody>
+<% end %>
 <% @data2.each do |row| %>
     <tr>
-        <td><%= row[4] %></td>
+	 	<% #isbnの取得
+		sql = <<-SQL
+			SELECT isbn FROM BookData WHERE id = "#{row[1]}"
+		SQL
+		%>
+        <td><a href="/browse/<%= @db.get_first_value(sql) %>/<%= row[1]%>"><%= row[4] %></a></td>
             <% row.each do |i| %>
     		    <td><%= row[i.to_i] %></td>
             <% end %>
     </tr>
 <% end %>
+</tbody>
 <!--検索文字列が数値の時のみ検索-->
 <% if defined? @data3 %>
+<thead>
+	<tr>
+		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>ISBN</th>
+		<th>書名</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>出版年</th>
+		<th>出版月</th>
+		<th>出版日</th>
+		<th>閲覧数</th>
+	</tr>
+</thead>
+<tbody>
 	<% @data3.each do |row|%>
 	  		<tr>
-    			<td><%= row[2] %></td>
+    			<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
             	<% row.each do |i| %>
     		    	<td><%= row[i.to_i] %></td>
             	<% end %>
   			</tr>
 	<% end %>
+</tbody>
 <% end %>
-	</tbody>
 </table>
