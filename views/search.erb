@@ -1,4 +1,5 @@
 <h1>検索結果</h1>
+<FONT color=red>数字で検索した場合、全く関係のなさそうな値も表示されます。<br /></FONT>
 満足のいく検索結果がなければ、Googleで検索してください。
 <a href="https://www.google.co.jp/#q=<%= @search_text %>" target="_blank">Googleで "<%= @search_text %>" を検索</a><br />
 （もちろんYahoo!でも可）
@@ -16,7 +17,7 @@
 </div>
 
 <table class="table table-striped">
-<!--data1用-->
+<%# data1用 %>
 <% if !@data1.empty? %>
 <thead>
 	<tr>
@@ -37,13 +38,26 @@
 <% @data1.each do |row| %>
 	  	<tr>
     		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
-            <% row.each do |i| %>
-    		    <td><%= row[i.to_i] %></td>
-            <% end %>
+			<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+			<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+			<%#<% row.each do |i| %>
+			<%#	<% rown = binding.local_variable_get("row#{i}") %>
+			<%#		<td><%= rown %></td>
+            <%#	<% end %>
+			<td><%= row[0] %></td>
+			<td><%= row[1] %></td>
+			<td><%= row[2] %></td>
+			<td><%= row[3] %></td>
+			<td><%= row[4] %></td>
+			<td><%= row[5] %></td>
+			<td><%= row[6] %></td>
+			<td><%= row[7] %></td>
+			<td><%= row[8] %></td>
+			<td><%= row[9] %></td>
   		</tr>
 <% end %>
 </tbody>
-<!--data2用-->
+<%# data2用 %>
 <% if !@data2.empty? %>
 <thead>
 	<tr>
@@ -52,6 +66,7 @@
 		<th>本の内部登録番号</th>
 		<th>5段階評価</th>
 		<th>評判</th>
+		<th>書名</th>
 	</tr>
 </thead>
 <tbody>
@@ -64,13 +79,21 @@
 		SQL
 		%>
         <td><a href="/browse/<%= @db.get_first_value(sql) %>/<%= row[1]%>"><%= row[4] %></a></td>
-            <% row.each do |i| %>
-    		    <td><%= row[i.to_i] %></td>
-            <% end %>
+		<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+		<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+		<%#<% row.each do |i| %>
+		<%#	<% rown = binding.local_variable_get("row#{i}") %>
+		<%#		<td><%= rown %></td>
+        <%#	<% end %>
+		<td><%= row[0] %></td>
+		<td><%= row[1] %></td>
+		<td><%= row[2] %></td>
+		<td><%= row[3] %></td>
+		<td><%= row[4] %></td>
     </tr>
 <% end %>
 </tbody>
-<!--検索文字列が数値の時のみ検索-->
+<%# 検索文字列が数値の時のみ検索 %>
 <% if defined? @data3 %>
 <thead>
 	<tr>
@@ -88,12 +111,25 @@
 </thead>
 <tbody>
 	<% @data3.each do |row|%>
-	  		<tr>
-    			<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
-            	<% row.each do |i| %>
-    		    	<td><%= row[i.to_i] %></td>
-            	<% end %>
-  			</tr>
+	  	<tr>
+    		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
+			<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+			<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+			<%#<% row.each do |i| %>
+			<%#	<% rown = binding.local_variable_get("row#{i}") %>
+			<%#		<td><%= rown %></td>
+            <%#	<% end %>
+			<td><%= row[0] %></td>
+			<td><%= row[1] %></td>
+			<td><%= row[2] %></td>
+			<td><%= row[3] %></td>
+			<td><%= row[4] %></td>
+			<td><%= row[5] %></td>
+			<td><%= row[6] %></td>
+			<td><%= row[7] %></td>
+			<td><%= row[8] %></td>
+			<td><%= row[9] %></td>
+  		</tr>
 	<% end %>
 </tbody>
 <% end %>
