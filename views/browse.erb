@@ -1,63 +1,83 @@
 <h1>閲覧</h1>
 
-<form action="/reputation/insert" method="GET" name="reputation">
+<form action="/reputation/insert" method="GET" name="reputation" class="form-horizontal">
 <br />
-<p>
-    ISBN番号（ISBN番号13桁を半角数字のみ,区切り文字なし）:
-    <input type="text" name="isbn" value="<%= @ISBN %>">
-</p>
-<p>
-    書名:
-    <input type="text" name="title" value="<%= @title %>">
-</p>
-<p>
-    著者:
-    <input type="text" name="author" value="<%= @author %>">
-</p>
-<p>
-    出版社:
-    <input type="text" name="publisher" value="<%= @publisher %>">
-</p>
-<p>
-    出版年月日（YYYY-MM-DD 例：2000-01-01）(半角数字のみ):
-    <input type="text" name="publication_year" value="<%= @publication_year %>">年
-    <input type="text" name="publication_month" value="<%= @publication_month %>">月
-    <input type="text" name="publication_dates" value="<%= @publication_dates %>">日
-</p>
-<p>
-    閲覧数:
-    <input type="text" name="views" value="<%= @views %>">
-</p>
-<p>
-	内部登録番号:
-	<input type="text" name="id" value="<%= @ID %>">
-</p>
-<br />
-<p>
-    <INPUT type="button" value="戻る" onClick='history.back();'>
-</p>
-<P>
-    <a href="/">「本評価共有アプリ」メインページへ移動</a>
-</P>
+<div class="form-group">
+	<label class="col-sm-2 control-label">ISBN番号:</label>
+	<div class="col-sm-10">
+    	<input type="text" class="form-control" name="isbn" value="<%= @ISBN %>">
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">書名:</label>
+	<div class="col-sm-10">
+    	<input type="text" class="form-control" name="title" value="<%= @title %>">
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">著者:</label>
+	<div class="col-sm-10">
+    	<input type="text" class="form-control" name="author" value="<%= @author %>">
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">出版社:</label>
+	<div class="col-sm-10">
+    	<input type="text" class="form-control" name="publisher" value="<%= @publisher %>">
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">出版年月日:</label>
+	<div class="col-sm-10 form-inline">
+    	<input type="text" class="form-control" name="publication_year" value="<%= @publication_year %>">年
+    	<input type="text" class="form-control" name="publication_month" value="<%= @publication_month %>">月
+    	<input type="text" class="form-control" name="publication_dates" value="<%= @publication_dates %>">日
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">閲覧数:</label>
+	<div class="col-sm-10">
+    	<input type="text" class="form-control" name="views" value="<%= @views %>">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-sm-2 control-label">内部登録番号:</label>
+	<div class="col-sm-10">
+		<input type="text" class="form-control" name="id" value="<%= @ID %>">
+	</div>
+</div>
+
+<hr size=100>
 
 <!--評価の書き込み-->
-<p>
-	<div>
-  <textarea name="reputation" cols=40 rows=4>ここにこの本の評価を入力してください</textarea>
-	5段階評価：<select name="stars">
-	<option value=0>選択してください</option>
-	<option value=1>最悪</option>
-	<option value=2>微妙</option>
-	<option value=3>普通</option>
-	<option value=4>そこそこ</option>
-	<option value=5>最高に良い</option>
-	</select>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="InputTextarea">評価記入欄</label>
+	<div class="col-sm-10">
+  		<textarea name="reputation" class="form-control" cols=40 rows=4 placeholder="ここにこの本の評価を入力してください"></textarea>
 	</div>
-<input type="submit" value="送信"><input type="reset" value="リセット">
+<label class="col-sm-2 control-label">5段階評価：</label>
+		<div class="col-sm-10">
+			<select class="form-control" name="stars">
+			<option value=0>選択してください</option>
+			<option value=1>最悪</option>
+			<option value=2>微妙</option>
+			<option value=3>普通</option>
+			<option value=4>そこそこ</option>
+			<option value=5>最高に良い</option>
+			</select>
+		</div>
+
+<div class="form-group">
+	<div class="btn-group center-block">
+		<input type="submit" class="btn btn-default" value="評価を投稿">
+		<input type="reset" class="btn btn-default" value="リセット">
+	</div>
+</div>
+</div>
 </p>
 </form>
 
-
+<!--評価の表示-->
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -90,3 +110,13 @@
 <% end %>
 	</tbody>
 </table>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<form class="form-horizontal">
+	<div class="form-group">
+		<div class="btn-group btn-group-justified">
+    		<input type="button" class="btn btn-default btn-block btn btn-success" value="戻る" onClick='history.back();'>
+		</div>
+	</div>
+</form>
+</nav>
