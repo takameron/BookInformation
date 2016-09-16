@@ -158,7 +158,7 @@ get '/search' do
 			SELECT title FROM BookData WHERE id = "#{row[1]}"
 		SQL
 		title = @db.get_first_value(sql)
-		@data2[row].push(title)
+		row.push(title)
 	end
 
 	#数字として調べる
