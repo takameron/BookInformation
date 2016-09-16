@@ -4,7 +4,16 @@
 （もちろんYahoo!でも可）
 <a href="http://search.yahoo.co.jp/search?p=<%= @search_text %>" target="_blank">Yahoo!で "<%= @search_text %>" を検索</a><br />
 （それともBingという手もあり？）
-<a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a>
+<a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a><br />
+
+<div align="right">
+<% if defined? @data3 %>
+	<%= hits = @data1.count+@data2.count+@data3.count %>
+<% else %>
+	<%= hits = @data1.count+@data2.count %>
+<% end %>
+件がヒットしました。
+</div>
 
 <table class="table table-striped">
 <!--data1用-->
