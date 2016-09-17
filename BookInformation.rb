@@ -3,6 +3,11 @@ Encoding.default_external = 'UTF-8'
 require 'sinatra'
 require 'sqlite3'
 require "sinatra/reloader" if development?
+#以下はGoogle Books APIを使うため
+require 'net/http'  
+require 'uri'  
+require 'json'  
+require 'open-uri'
 
 #データベースの準備
 before do
