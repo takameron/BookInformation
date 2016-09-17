@@ -6,6 +6,8 @@
 <a href="http://search.yahoo.co.jp/search?p=<%= @search_text %>" target="_blank">Yahoo!で "<%= @search_text %>" を検索</a><br />
 （それともBingという手もあり？）
 <a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a><br />
+amazonならお探しの図書が直接見つかるかも?
+<a href="https://www.amazon.co.jp/s/?field-keywords=<%= @search_text %>" target="_blank">amazonで "<%= @search_text %>" を検索</a><br />
 
 <div align="right">
 <% if defined? @data3 %>
