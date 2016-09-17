@@ -1,36 +1,49 @@
-<form action="/registration/insert" method="GET" name="registration">
+<form action="/registration/insert" method="GET" name="registration"  class="form-horizontal">
 <br />
-<p>
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
 最低限「ISBN番号」「書名」を入力してください。
-</P>
+</div>
 <br />
-<p>
-    ISBN番号（ISBN番号13桁を半角数字のみ,区切り文字なし）:
-    <input type="text" name="isbn">
-</p>
-<p>
-    書名:
-    <input type="text" name="title">
-</p>
-<p>
-    著者:
-    <input type="text" name="author">
-</p>
-<p>
-    出版社:
-    <input type="text" name="publisher">
-</p>
-<p>
-    出版年月日（YYYY-MM-DD 例：2000-01-01）(半角数字のみ):
-    <input type="text" name="publication_year">年
-    <input type="text" name="publication_month">月
-    <input type="text" name="publication_date">日
-</p>
+<div class="form-group">
+    <label class="col-sm-2 control-label">ISBN番号（ISBN番号13桁を半角数字のみ,区切り文字なし）:</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" name="isbn">
+	</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">書名:</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" name="title">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">著者:</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" name="author">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">出版社:</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" name="publisher">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">出版年月日（YYYY-MM-DD 例：2000-01-01）(半角数字のみ):</label>
+    <div class="col-sm-10 form-inline">
+        <input type="text" name="publication_year">年
+        <input type="text" name="publication_month">月
+        <input type="text" name="publication_date">日
+    </div>
+</div>
 <br />
-<p>
-    <input type="submit" value="登録">
-    <input type="reset" value="リセット">
-</p>
+<div class="form-group">
+	<div class="btn-group center-block">
+        <input type="submit" class="btn btn-default" value="登録">
+        <input type="reset" class="btn btn-default" value="リセット">
+    </div>
+</div>
 <P>
     <a href="/">「本評価共有アプリ」メインページへ移動</a>
 </P>
