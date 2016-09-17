@@ -175,6 +175,14 @@ get '/search' do
 		@data3=@db.execute(sql)
 	end
 
+	#Google Books APIから検索
+	uri = URI.parse("https://www.googleapis.com/books/v1/volumes?q=\"#{@serch_text}\"&country=JP")
+	#json = Net::HTTP.get(uri)
+	@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=%E7%A5%9E%E6%A7%98%E3%81%AE%E3%82%AB%E3%83%AB%E3%83%86&country=JP").read)
+	#@googlesdata = JSON.parse(json)
+
+	puts @googlesdatadata
+
 	erb :search, layout: :layout
 end
 
