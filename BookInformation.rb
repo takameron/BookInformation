@@ -176,12 +176,10 @@ get '/search' do
 	end
 
 	#Google Books APIから検索
-	uri = URI.parse("https://www.googleapis.com/books/v1/volumes?q=\"#{@serch_text}\"&country=JP")
-	#json = Net::HTTP.get(uri)
-	@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=%E7%A5%9E%E6%A7%98%E3%81%AE%E3%82%AB%E3%83%AB%E3%83%86&country=JP").read)
-	#@googlesdata = JSON.parse(json)
+	@search_text.encode!("Shift_JIS")
+	@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=#{@search_text}&country=JP").read,quirks_mode: true)
 
-	puts @googlesdatadata
+	puts @googlesdata
 
 	erb :search, layout: :layout
 end
