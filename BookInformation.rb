@@ -176,10 +176,12 @@ get '/search' do
 	end
 
 	#Google Books APIから検索
-	@search_text.encode!("Shift_JIS")
-	@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=#{@search_text}&country=JP").read,quirks_mode: true)
-
-	puts @googlesdata
+	begin
+		
+		@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=#{@search_text.encode("Shift_JIS")}&country=JP").read,quirks_mode: true)
+	rescue
+		@googlesdata[error] = "データを取得できません"
+	end
 
 	erb :search, layout: :layout
 end
