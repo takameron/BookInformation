@@ -19,6 +19,10 @@ end
 
 #メインページ
 get '/' do
+	sql = <<-SQL
+		SELECT * FROM BookData ORDER BY views desc;
+	SQL
+	@view_rank = @db.execute(sql)
 	erb :index ,layout: :layout
 end
 
