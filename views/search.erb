@@ -1,5 +1,5 @@
-<h1>検索結果</h1>
 <% if !@search_text.empty? %>
+<h1>検索結果</h1>
 <FONT color=red>数字で検索した場合、全く関係のなさそうな値も表示されます。<br /></FONT>
 満足のいく検索結果がなければ、Googleで検索してください。
 <a href="https://www.google.co.jp/#q=<%= @search_text %>" target="_blank">Googleで "<%= @search_text %>" を検索</a><br />
@@ -9,6 +9,8 @@
 <a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a><br />
 amazonならお探しの図書が直接見つかるかも?
 <a href="https://www.amazon.co.jp/s/?field-keywords=<%= @search_text %>" target="_blank">amazonで "<%= @search_text %>" を検索</a><br />
+<% else %>
+	<h1>登録図書・評価</h1>
 <% end %>
 
 <div align="right">
@@ -151,8 +153,6 @@ amazonならお探しの図書が直接見つかるかも?
 </table>
 <br />
 
-<%#とりあえずコメント...トと思ったら、コメントされていない！！
-
 <h2>GoogleBooksAPIによる検索</h2>
 <%# Google Books APIで取得した結果 %>
 Googleに感謝！！<br />
@@ -162,5 +162,3 @@ Googleに感謝！！<br />
 <tbody>
 </tbody>
 </table>
-
-%>
