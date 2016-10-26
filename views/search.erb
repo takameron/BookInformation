@@ -1,0 +1,164 @@
+<% if !@search_text.empty? %>
+<h1>検索結果</h1>
+<FONT color=red>数字で検索した場合、全く関係のなさそうな値も表示されます。<br /></FONT>
+満足のいく検索結果がなければ、Googleで検索してください。
+<a href="https://www.google.co.jp/#q=<%= @search_text %>" target="_blank">Googleで "<%= @search_text %>" を検索</a><br />
+（もちろんYahoo!でも可）
+<a href="http://search.yahoo.co.jp/search?p=<%= @search_text %>" target="_blank">Yahoo!で "<%= @search_text %>" を検索</a><br />
+（それともBingという手もあり？）
+<a href="https://www.bing.com/search?q=<%= @search_text %>" target="_blank">Bingで "<%= @search_text %>" を検索</a><br />
+amazonならお探しの図書が直接見つかるかも?
+<a href="https://www.amazon.co.jp/s/?field-keywords=<%= @search_text %>" target="_blank">amazonで "<%= @search_text %>" を検索</a><br />
+<% else %>
+	<h1>登録図書・評価</h1>
+<% end %>
+
+<div align="right">
+<% if defined? @data3 %>
+	<%= @data1.count+@data2.count+@data3.count %>
+<% else %>
+	<%= @data1.count+@data2.count %>
+<% end %>
+件がヒットしました。
+</div>
+
+<h2>本の情報</h2>
+<table class="table table-striped">
+<%# data1用 %>
+<% if !@data1.empty? %>
+<thead>
+	<tr>
+		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>ISBN</th>
+		<th>書名</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>出版年</th>
+		<th>出版月</th>
+		<th>出版日</th>
+		<th>閲覧数</th>
+	</tr>
+</thead>
+<% end %>
+<tbody>
+<% @data1.each do |row| %>
+	  	<tr>
+    		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
+			<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+			<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+			<%#<% row.each do |i| %>
+			<%#	<% rown = binding.local_variable_get("row#{i}") %>
+			<%#		<td><%= rown %></td>
+            <%#	<% end %>
+			<td><%= row[0] %></td>
+			<td><%= row[1] %></td>
+			<td><%= row[2] %></td>
+			<td><%= row[3] %></td>
+			<td><%= row[4] %></td>
+			<td><%= row[5] %></td>
+			<td><%= row[6] %></td>
+			<td><%= row[7] %></td>
+			<td><%= row[8] %></td>
+			<td><%= row[9] %></td>
+  		</tr>
+<% end %>
+</tbody>
+</table>
+<br />
+
+<h2>本の評価</h2>
+<%# data2用 %>
+<table class="table table-striped">
+<% if !@data2.empty? %>
+<thead>
+	<tr>
+		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>本の内部登録番号</th>
+		<th>5段階評価</th>
+		<th>評判</th>
+		<th>書名</th>
+	</tr>
+</thead>
+<tbody>
+<% end %>
+<% @data2.each do |row| %>
+    <tr>
+	 	<% #isbnの取得
+		sql = <<-SQL
+			SELECT isbn FROM BookData WHERE id = "#{row[1]}"
+		SQL
+		%>
+        <td><a href="/browse/<%= @db.get_first_value(sql) %>/<%= row[1]%>"><%= row[4] %></a></td>
+		<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+		<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+		<%#<% row.each do |i| %>
+		<%#	<% rown = binding.local_variable_get("row#{i}") %>
+		<%#		<td><%= rown %></td>
+        <%#	<% end %>
+		<td><%= row[0] %></td>
+		<td><%= row[1] %></td>
+		<td><%= row[2] %></td>
+		<td><%= row[3] %></td>
+		<td><%= row[4] %></td>
+    </tr>
+<% end %>
+</tbody>
+</table>
+<br />
+
+<%# 検索文字列が数値の時のみ検索 %>
+<% if defined? @data3 %>
+<h2>本の評価（数値に関する検索）</h2>
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th>書名</th>
+		<th>内部登録番号</th>
+		<th>ISBN</th>
+		<th>書名</th>
+		<th>著者</th>
+		<th>出版社</th>
+		<th>出版年</th>
+		<th>出版月</th>
+		<th>出版日</th>
+		<th>閲覧数</th>
+	</tr>
+</thead>
+<tbody>
+	<% @data3.each do |row|%>
+	  	<tr>
+    		<td><a href="/browse/<%= row[1]%>/<%= row[0] %>"><%= row[2] %></a></td>
+			<%#（コメント内なのにsinatraに読まれるという疑問->強引にコメントアウト）
+			<%#なぜかエラーになる（本当はこっちのほうがまとまっていて綺麗）
+			<%#<% row.each do |i| %>
+			<%#	<% rown = binding.local_variable_get("row#{i}") %>
+			<%#		<td><%= rown %></td>
+            <%#	<% end %>
+			<td><%= row[0] %></td>
+			<td><%= row[1] %></td>
+			<td><%= row[2] %></td>
+			<td><%= row[3] %></td>
+			<td><%= row[4] %></td>
+			<td><%= row[5] %></td>
+			<td><%= row[6] %></td>
+			<td><%= row[7] %></td>
+			<td><%= row[8] %></td>
+			<td><%= row[9] %></td>
+  		</tr>
+	<% end %>
+</tbody>
+<% end %>
+</table>
+<br />
+
+<h2>GoogleBooksAPIによる検索</h2>
+<%# Google Books APIで取得した結果 %>
+Googleに感謝！！　〜Sorry, 現在実装中〜<br />
+<table class="table table-striped">
+<thead>
+</thead>
+<tbody>
+</tbody>
+</table>
