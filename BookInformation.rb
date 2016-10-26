@@ -19,6 +19,10 @@ end
 
 #メインページ
 get '/' do
+	sql = <<-SQL
+		SELECT * FROM BookData ORDER BY views desc;
+	SQL
+	@view_rank = @db.execute(sql)
 	erb :index ,layout: :layout
 end
 
@@ -176,10 +180,12 @@ get '/search' do
 	end
 
 	#Google Books APIから検索
-	@search_text.encode!("Shift_JIS")
-	@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=#{@search_text}&country=JP").read,quirks_mode: true)
-
-	puts @googlesdata
+	begin
+		@googlesdata = JSON.parse(open("https://www.googleapis.com/books/v1/volumes?q=#{@search_text.encode("Shift_JIS")}&country=JP").read,quirks_mode: true)
+	rescue
+		@googlesdata = Hash.new
+		@googlesdata.store("errorMessage","データを取得できません")
+	end
 
 	erb :search, layout: :layout
 end
