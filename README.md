@@ -4,6 +4,23 @@
 課題はとにかく何かWebアプリケーションを作成するという課題でした。  
 詳しくはmemos.mdをご覧ください。
 
+## INSTALL
+```
+git clone https://programmingprivate@bitbucket.org/programmingprivate/bookinformation.git
+gem install bundler
+
+#Ubuntuの場合
+sudo apt-get install sqlite3 libsqlite3-dev
+#Windowsの場合は、知らない
+
+bundle install --path vendor/bundle
+#エラーが発生した場合は、Gemfile.lockを削除してみる
+
+bundle exec ruby Bookinformation.rb
+
+#ブラウザで localhost:4567 にアクセス
+```
+
 ### What is this repository for? ###
 
 * Quick summary
