@@ -27,9 +27,9 @@ get '/' do
 end
 
 #閲覧ページ
-get '/browse/:ISBN/:ID' do
-	@ISBN = params["ISBN"].to_i
-	@ID = params["ID"].to_i
+get '/browse/:isbn/:id' do
+	@ISBN = params["isbn"].to_i
+	@ID = params["id"].to_i
 
 	#IDが指定されていなかった場合に、入力されたISBNが結び付けられている中で最後のIDを指定
 	if(!@ID)
