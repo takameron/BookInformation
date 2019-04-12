@@ -29,7 +29,7 @@ sudo apt-get install sqlite3 libsqlite3-dev
 bundle install --path vendor/bundle
 #エラーが発生した場合は、Gemfile.lockを削除してみる
 
-bundle exec ruby Bookinformation.rb
+bundle exec ruby BookInformation.rb
 
 #ブラウザで localhost:4567 にアクセス
 ```
