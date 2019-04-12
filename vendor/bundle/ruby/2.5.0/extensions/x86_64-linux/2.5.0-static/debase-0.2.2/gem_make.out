@@ -1,5 +1,5 @@
 current directory: /home/user/repos/bookinformation/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
-/home/user/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180915-2529-1agmxkk.rb extconf.rb
+/home/user/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20190412-3238-1otslxp.rb extconf.rb
 checking for vm_core.h... no
 checking for vm_core.h... no
 checking for vm_core.h... yes
@@ -15,4 +15,4 @@ linking shared-object attach.so
 
 current directory: /home/user/repos/bookinformation/vendor/bundle/ruby/2.5.0/gems/debase-0.2.2/ext/attach
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 attach.so ./.gem.20180915-2529-1oy18mg
+/usr/bin/install -c -m 0755 attach.so ./.gem.20190412-3238-lnjqf8
