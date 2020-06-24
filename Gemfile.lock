@@ -7,7 +7,7 @@ GEM
     debase-ruby_core_source (0.10.9)
     multi_json (1.14.1)
     mustermann (1.1.1)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
     rake (13.0.1)
